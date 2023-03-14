@@ -15,7 +15,13 @@ return new class extends Migration
     {
         Schema::create('preset_product', function (Blueprint $table) {
             $table->id();
+            $table->unsignedBigInteger('preset_id');
+            $table->unsignedBigInteger('product_id');
+            $table->integer('sorting');
             $table->timestamps();
+
+            $table->foreign('preset_id')->references('id')->on('presets');
+            $table->foreign('product_id')->references('id')->on('products');
         });
     }
 

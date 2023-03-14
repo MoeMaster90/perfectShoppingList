@@ -15,7 +15,12 @@ return new class extends Migration
     {
         Schema::create('preset_team', function (Blueprint $table) {
             $table->id();
+            $table->unsignedBigInteger('preset_id');
+            $table->unsignedBigInteger('team_id');
             $table->timestamps();
+
+            $table->foreign('preset_id')->references('id')->on('presets');
+            $table->foreign('team_id')->references('id')->on('teams');
         });
     }
 

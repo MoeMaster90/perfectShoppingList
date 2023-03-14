@@ -15,7 +15,13 @@ return new class extends Migration
     {
         Schema::create('product_shop', function (Blueprint $table) {
             $table->id();
+            $table->unsignedBigInteger('product_id');
+            $table->unsignedBigInteger('shop_id');
+            $table->integer('sorting');
             $table->timestamps();
+
+            $table->foreign('product_id')->references('id')->on('products');
+            $table->foreign('shop_id')->references('id')->on('shops');
         });
     }
 

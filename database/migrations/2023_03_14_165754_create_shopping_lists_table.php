@@ -16,7 +16,11 @@ return new class extends Migration
         Schema::create('shopping_lists', function (Blueprint $table) {
             $table->id();
             $table->string('name');
+            $table->boolean('preserve');
+            $table->unsignedBigInteger('shop_id');
             $table->timestamps();
+
+            $table->foreign('shop_id')->references('id')->on('shops');
         });
     }
 

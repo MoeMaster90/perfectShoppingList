@@ -15,7 +15,12 @@ return new class extends Migration
     {
         Schema::create('shopping_list_team', function (Blueprint $table) {
             $table->id();
+            $table->unsignedBigInteger('shopping_list_id');
+            $table->unsignedBigInteger('team_id');
             $table->timestamps();
+
+            $table->foreign('shopping_list_id')->references('id')->on('shopping_lists');
+            $table->foreign('team_id')->references('id')->on('teams');
         });
     }
 
